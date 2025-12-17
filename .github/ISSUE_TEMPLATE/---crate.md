@@ -4,7 +4,6 @@ about: Propose a new ZK-Kit Rust crate
 title: ''
 labels: 'feature :rocket:'
 assignees: ''
-
 ---
 
 **Describe the package you'd like**
