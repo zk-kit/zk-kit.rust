@@ -28,7 +28,7 @@
     </h4>
 </div>
 
-In this implementation, the tree is built with a predetermined depth, utilizing a list of zeros (one for each level) to hash nodes lacking fully defined children. The tree's branching factor, or the number of children per node, can be customized via the arity parameter. For detailed insights into the implementation specifics, please refer to the [technical documentation](https://privacy-scaling-explorations.github.io/zk-kit.rust/zk_kit_imt/index.html).
+In this implementation, the tree is built with a predetermined depth, utilizing a list of zeros (one for each level) to hash nodes lacking fully defined children. The tree's branching factor, or the number of children per node, can be customized via the arity parameter. For detailed insights into the implementation specifics, please refer to the [technical documentation](https://docs.rs/zk-kit-imt/latest/zk_kit_imt/).
 
 ---
 
