@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8](https://github.com/zk-kit/zk-kit.rust/compare/zk-kit-imt-v0.0.7...zk-kit-imt-v0.0.8) - 2026-02-08
+
+### Other
+- replace broken github pages links with docs.rs urls ([#84](https://github.com/zk-kit/zk-kit.rust/pull/84))
+
 ## [0.0.7](https://github.com/privacy-scaling-explorations/zk-kit.rust/compare/zk-kit-imt-v0.0.6...zk-kit-imt-v0.0.7) - 2025-06-10
 
 ### Other

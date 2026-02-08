@@ -560,7 +560,7 @@ dependencies = [
 
 [[package]]
 name = "zk-kit-imt"
-version = "0.0.7"
+version = "0.0.8"
 dependencies = [
  "hex",
  "tiny-keccak",
