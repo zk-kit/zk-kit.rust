@@ -74,12 +74,12 @@
                 </a>
             </td>
             <td>
-                <a href="https://privacy-scaling-explorations.github.io/zk-kit.rust/zk_kit_imt">
+                <a href="https://docs.rs/zk-kit-imt/latest/zk_kit_imt/">
                     <img src="https://img.shields.io/crates/v/zk-kit-imt?style=flat-square" alt="Crate version" />
                 </a>
             </td>
             <td>
-                <a href="https://privacy-scaling-explorations.github.io/zk-kit.rust/zk_kit_imt">
+                <a href="https://docs.rs/zk-kit-imt/latest/zk_kit_imt/">
                     <img src="https://img.shields.io/crates/d/zk-kit-imt?style=flat-square" alt="Crate downloads" />
                 </a>
             </td>
@@ -94,12 +94,12 @@
                 </a>
             </td>
             <td>
-                <a href="https://privacy-scaling-explorations.github.io/zk-kit.rust/zk_kit_smt">
+                <a href="https://docs.rs/zk-kit-smt/latest/zk_kit_smt/">
                     <img src="https://img.shields.io/crates/v/zk-kit-smt?style=flat-square" alt="Crate version" />
                 </a>
             </td>
             <td>
-                <a href="https://privacy-scaling-explorations.github.io/zk-kit.rust/zk_kit_smt">
+                <a href="https://docs.rs/zk-kit-smt/latest/zk_kit_smt/">
                     <img src="https://img.shields.io/crates/d/zk-kit-smt?style=flat-square" alt="Crate downloads" />
                 </a>
             </td>
@@ -114,12 +114,12 @@
                 </a>
             </td>
             <td>
-                <a href="https://privacy-scaling-explorations.github.io/zk-kit.rust/zk_kit_pmt">
+                <a href="https://docs.rs/zk-kit-pmt/latest/zk_kit_pmt/">
                     <img src="https://img.shields.io/crates/v/zk-kit-pmt?style=flat-square" alt="Crate version" />
                 </a>
             </td>
             <td>
-                <a href="https://privacy-scaling-explorations.github.io/zk-kit.rust/zk_kit_pmt">
+                <a href="https://docs.rs/zk-kit-pmt/latest/zk_kit_pmt/">
                     <img src="https://img.shields.io/crates/d/zk-kit-pmt?style=flat-square" alt="Crate downloads" />
                 </a>
             </td>
