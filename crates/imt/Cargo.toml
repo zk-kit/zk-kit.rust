@@ -8,4 +8,5 @@ description = "Incremental Merkle Tree"
 
 [dependencies]
 hex = "0.4.3"
+thiserror = "2"
 tiny-keccak = { version = "2.0.0", features = ["keccak"] }

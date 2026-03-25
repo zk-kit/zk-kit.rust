@@ -10,3 +10,4 @@ description = "Sparse Merkle Tree"
 
 [dependencies]
 num-bigint = "0.4.6"
+thiserror = "2"

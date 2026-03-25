@@ -2,34 +2,12 @@ use std::{collections::HashMap, str::FromStr};
 
 use num_bigint::BigInt;
 
+pub use crate::errors::SMTError;
 use crate::utils::{
     get_first_common_elements, get_index_of_last_non_zero_element, is_hexadecimal, key_to_path,
 };
 
 use std::fmt;
-
-#[derive(Debug, PartialEq)]
-pub enum SMTError {
-    KeyAlreadyExist(String),
-    KeyDoesNotExist(String),
-    InvalidParameterType(String, String),
-    InvalidSiblingIndex,
-}
-
-impl fmt::Display for SMTError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            SMTError::KeyAlreadyExist(s) => write!(f, "Key {} already exists", s),
-            SMTError::KeyDoesNotExist(s) => write!(f, "Key {} does not exist", s),
-            SMTError::InvalidParameterType(p, t) => {
-                write!(f, "Parameter {} must be a {}", p, t)
-            },
-            SMTError::InvalidSiblingIndex => write!(f, "Invalid sibling index"),
-        }
-    }
-}
-
-impl std::error::Error for SMTError {}
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum Node {
@@ -55,10 +33,10 @@ impl FromStr for Node {
         } else if is_hexadecimal(s) {
             Ok(Node::Str(s.to_string()))
         } else {
-            Err(SMTError::InvalidParameterType(
-                s.to_string(),
-                "BigInt or hexadecimal string".to_string(),
-            ))
+            Err(SMTError::InvalidParameterType {
+                name: s.to_string(),
+                expected_type: "BigInt or hexadecimal string".to_string(),
+            })
         }
     }
 }

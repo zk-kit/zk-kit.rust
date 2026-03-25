@@ -1,3 +1,5 @@
+use crate::errors::ImtError;
+
 pub struct IMT {
     nodes: Vec<Vec<IMTNode>>,
     zeroes: Vec<IMTNode>,
@@ -23,9 +25,16 @@ impl IMT {
         zero_value: IMTNode,
         arity: usize,
         leaves: Vec<IMTNode>,
-    ) -> Result<IMT, &'static str> {
-        if leaves.len() > arity.pow(depth as u32) {
-            return Err("The tree cannot contain more than arity^depth leaves");
+    ) -> Result<IMT, ImtError> {
+        let got = leaves.len();
+        let max = arity.pow(depth as u32);
+        if got > max {
+            return Err(ImtError::TooManyLeaves {
+                got,
+                arity,
+                depth,
+                max,
+            });
         }
 
         let mut imt = IMT {
@@ -93,9 +102,9 @@ impl IMT {
         self.nodes.get(0)?.iter().position(|n| n == &leaf)
     }
 
-    pub fn insert(&mut self, leaf: IMTNode) -> Result<(), &'static str> {
+    pub fn insert(&mut self, leaf: IMTNode) -> Result<(), ImtError> {
         if self.nodes[0].len() >= self.arity.pow(self.depth as u32) {
-            return Err("The tree is full");
+            return Err(ImtError::TreeFull);
         }
 
         let index = self.nodes[0].len();
@@ -103,9 +112,9 @@ impl IMT {
         self.update(index, self.nodes[0][index].clone())
     }
 
-    pub fn update(&mut self, mut index: usize, new_leaf: IMTNode) -> Result<(), &'static str> {
+    pub fn update(&mut self, mut index: usize, new_leaf: IMTNode) -> Result<(), ImtError> {
         if index >= self.nodes[0].len() {
-            return Err("The leaf does not exist in this tree");
+            return Err(ImtError::NotContained);
         }
 
         let mut node = new_leaf;
@@ -138,13 +147,13 @@ impl IMT {
         Ok(())
     }
 
-    pub fn delete(&mut self, index: usize) -> Result<(), &'static str> {
+    pub fn delete(&mut self, index: usize) -> Result<(), ImtError> {
         self.update(index, self.zeroes[0].clone())
     }
 
-    pub fn create_proof(&self, index: usize) -> Result<IMTMerkleProof, &'static str> {
+    pub fn create_proof(&self, index: usize) -> Result<IMTMerkleProof, ImtError> {
         if index >= self.nodes[0].len() {
-            return Err("The leaf does not exist in this tree");
+            return Err(ImtError::NotContained);
         }
 
         let mut siblings = Vec::with_capacity(self.depth);
