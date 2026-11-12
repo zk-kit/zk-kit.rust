@@ -388,7 +388,7 @@ impl SMT {
             let root =
                 self.calculate_root(node, &matching_path, &merkle_proof.entry_response.siblings);
 
-            if merkle_proof.membership == (root == merkle_proof.root) {
+            if root == merkle_proof.root {
                 let path = key_to_path(&merkle_proof.entry_response.entry[0].to_string());
                 // Returns the first common bits of the two keys: the non-member key and the matching key.
                 let first_matching_bits = get_first_common_elements(&path, &matching_path);
@@ -782,6 +782,46 @@ mod tests {
         };
         let fun = smt.verify_proof(false_proof);
         assert!(!fun);
+    }
+
+    #[test]
+    fn test_verify_non_membership_proof_with_matching_entry() {
+        for big_numbers in [false, true] {
+            let mut smt = SMT::new(hash_function, big_numbers);
+            for k in ["a", "3", "2b", "20", "9", "17"] {
+                let key = if big_numbers {
+                    Key::BigInt(BigInt::parse_bytes(k.as_bytes(), 16).unwrap())
+                } else {
+                    Key::Str(k.to_string())
+                };
+                let _ = smt.add(key.clone(), key);
+            }
+
+            let key = if big_numbers {
+                Key::BigInt(BigInt::from(0x19))
+            } else {
+                Key::Str("19".to_string())
+            };
+            let proof = smt.create_proof(key);
+
+            assert!(proof.entry_response.matching_entry.is_some());
+            assert!(!proof.membership);
+            assert!(smt.verify_proof(proof));
+        }
+    }
+
+    #[test]
+    fn test_verify_non_membership_proof_with_wrong_root() {
+        let mut smt = SMT::new(hash_function, false);
+        for k in ["a", "3", "2b", "20", "9", "17"] {
+            let _ = smt.add(Key::Str(k.to_string()), Key::Str(k.to_string()));
+        }
+
+        let mut proof = smt.create_proof(Key::Str("19".to_string()));
+        assert!(proof.entry_response.matching_entry.is_some());
+        proof.root = Key::Str("1".to_string());
+
+        assert!(!smt.verify_proof(proof));
     }
 
     #[test]
